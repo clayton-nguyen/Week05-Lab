@@ -20,8 +20,9 @@
         
         <p>Password:  <input type="password" name="passwordField" value="${password}"> </p>
         
-        <input type="submit" value="Log in">
-            
+        <input type="submit" value="Login">
+        
+        <p>${alert}</p>
         </form>
     </body>
 </html>
