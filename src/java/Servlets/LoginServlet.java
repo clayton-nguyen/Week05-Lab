@@ -38,6 +38,32 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String user = request.getParameter("usernameField");
+        String pass = request.getParameter("passwordField");
+        
+        if (user == null || user.equals("") || pass == null || pass.equals("")) {
+            request.setAttribute("alert", "Please enter Username & Password");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
+
+        else {
+            AccountService accServ = new AccountService();
+            User newUser = accServ.login(user, pass);
+            
+            if (newUser != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("usernameField", user);
+                session.setAttribute("username", user);
+                response.sendRedirect("home");
+            }
+            
+            else {
+                request.setAttribute("usernameField", user);
+                request.setAttribute("passwordField", pass);
+                request.setAttribute("alert", "Incorrect Username or Password");
+                getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            }
+        }
         
     }
 
