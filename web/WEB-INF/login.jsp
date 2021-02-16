@@ -18,7 +18,7 @@
         <form method="post" action="login">
         <p>Username:  <input type="text" name="usernameField" value="${username}"> </p>
         
-        <p>Password:  <input type="text" name="passwordField" value="${password}"> </p>
+        <p>Password:  <input type="password" name="passwordField" value="${password}"> </p>
         
         <input type="submit" value="Log in">
             
